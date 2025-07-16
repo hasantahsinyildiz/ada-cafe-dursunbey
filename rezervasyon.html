@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Rezervasyon</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<header>
+		<div id="logo-container">
+			<img src="images/ada-cafe-logo.jpeg" id="logo" alt="Ada Cafe Logo">
+			<span id="logo-text">Ada Kahvecisi
+				<br>
+				<span id="logo-subtext">Dursunbey</span>
+			</span>
+		</div>
+		<nav id="navbar">
+			<a href="index.html">Güne Başlangıç</a>
+			<a href="kahve-cesitleri.html">Kahve Çeşitleri</a>
+			<a href="dondurmalar.html">Dondurmalar</a>
+			<a href="milkshake-cesitleri.html">MilkShake Çeşitleri</a>
+			<a href="pizza-cesitleri.html">Pizza Çeşitleri</a>
+			<a href="tatlilar.html">Tatlılar</a>
+			<a href="rezervasyon.html" id="buSayfa">Rezervasyon</a>
+			</div>
+		</nav>
+	</header>
+	<form>
+		<h2 class="animated-title">Rezervasyon Formu</h2>
+		<section class="form-section">
+			<label for="ad">Adınız</label>
+			<input type="text" id="ad" name="ad">
+			<label for="soyad">Soyadınız</label>
+			<input type="text" id="soyad" name="soyad">
+			<label for="telefon">Telefon Numaranız</label>
+			<input type="tel" id="telefon" name="telefon">
+			<label for="tarih">Tarih</label>
+			<input type="date" id="tarih" name="tarih">
+			<label for="saat">Saat</label>
+			<input type="time" id="saat" name="saat">
+			<label for="kisi">Kişi Sayısı</label>
+			<input type="number" id="kisi" name="kisi">
+			<label for="mesaj">Mesaj</label>
+			<textarea id="mesaj" name="mesaj"></textarea>
+			<button type="submit" id="rezervasyonYapBtn">Rezervasyon Yap</button>
+			<button type="reset">Formu Temizle</button>
+		</section>
+	</form>
+
+	<!-- Modal -->
+	<div id="modal" style="display:none;">
+		<div id="modal-content">
+			<p id="modal-message">Rezervasyonunuz kabul edildi</p>
+			<button id="modal-close">Tamam</button>
+		</div>
+	</div>
+	<footer>
+        <div class="footer-content">
+            <div class="footer-logo-info">
+                <img src="images/ada-cafe-logo.jpeg" class="footer-logo" alt="Ada Cafe Logo">
+                <div>
+                    <span class="footer-title">Ada Kahvecisi</span>
+                    <span class="footer-slogan">Kahvenin en güzel hali</span>
+                </div>
+            </div>
+            <div class="footer-contact">
+                <span>📞 0 555 555 55 55</span>
+                <span>•</span>
+                <a href="mailto:info@adakahvecisi.com">info@adakahvecisi.com</a>
+            </div>
+            <div class="footer-social">
+                <a href="https://instagram.com/" target="_blank">Instagram</a>
+                <a href="https://facebook.com/" target="_blank">Facebook</a>
+                <a href="https://wa.me/905555555555" target="_blank">WhatsApp</a>
+            </div>
+            <div class="footer-menu">
+                <a href="index.html">Ana Sayfa</a>
+                <a href="rezervasyon.html">Rezervasyon</a>
+                <a href="iletisim.html">İletişim</a>
+            </div>
+        </div>
+        <div class="footer-copyright">
+           © 2017 - Ada Kahvecisi | Balıkesir Büyükşehir Belediyesi Kuruluşudur
+        </div>
+    </footer>
+</body>
+
+<script>
+// Modal açma ve kapama fonksiyonları
+const form = document.querySelector('form');
+const modal = document.getElementById('modal');
+const modalClose = document.getElementById('modal-close');
+const modalMessage = document.getElementById('modal-message');
+
+form.addEventListener('submit', function(e) {
+	e.preventDefault();
+
+	// Tüm inputları kontrol et
+	const ad = document.getElementById('ad').value.trim();
+	const soyad = document.getElementById('soyad').value.trim();
+	const telefon = document.getElementById('telefon').value.trim();
+	const tarih = document.getElementById('tarih').value.trim();
+	const saat = document.getElementById('saat').value.trim();
+	const kisi = document.getElementById('kisi').value.trim();
+	const mesaj = document.getElementById('mesaj').value.trim();
+
+	if (!ad || !soyad || !telefon || !tarih || !saat || !kisi) {
+		modalMessage.textContent = 'Lütfen kutuları doldurunuz';
+	} else {
+		modalMessage.textContent = 'Rezervasyonunuz kabul edildi';
+	}
+	modal.style.display = 'flex';
+});
+
+modalClose.addEventListener('click', function() {
+	modal.style.display = 'none';
+	if (modalMessage.textContent === 'Rezervasyonunuz kabul edildi') {
+		form.reset();
+	}
+});
+</script>
+
+<style>
+#modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0,0,0,0.4);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1000;
+}
+#modal-content {
+	background: #fff;
+	padding: 32px 40px;
+	border-radius: 12px;
+	box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+	text-align: center;
+}
+#modal-content p {
+	font-size: 1.2rem;
+	margin-bottom: 20px;
+}
+#modal-close {
+	padding: 8px 24px;
+	font-size: 1rem;
+	border: none;
+	background: #4caf50;
+	color: #fff;
+	border-radius: 6px;
+	cursor: pointer;
+}
+#modal-close:hover {
+	background: #388e3c;
+}
+</style>
+
+<style>
+.animated-title {
+  background: linear-gradient(270deg, orange, black, orange);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  animation: gradientMove 2s linear infinite alternate;
+}
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+</style>
+
+</html>
